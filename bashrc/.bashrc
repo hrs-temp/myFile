@@ -130,6 +130,10 @@ alias ytdownload="yt-dlp -f "bestvideo+bestaudio/best" --merge-output-format mkv
 export PATH="~/.gem/ruby/3.4.0/bin:$PATH"
 
 eval "$(starship init bash)"  
+eval "$(fzf --bash)"
+alias finvim='nvim $(fzf -m --preview="bat --color=always {}")'
+
+
 
 # --- UNIVERSAL FASTFETCH LOADING: CHECKING FOR GRAPHICAL SUPPORT ---
 
