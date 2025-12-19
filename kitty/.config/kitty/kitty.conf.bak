@@ -1,0 +1,42 @@
+# ----------------------------------------------------------------------
+# Kitty Configuration for Harsh's GitHub Dark Theme Setup
+# ----------------------------------------------------------------------
+
+# ** 1. FONT SETTINGS **
+
+# The primary font family for regular, bold, and italic text.
+# IMPORTANT: Kitty needs the full font name (often the PostScript name).
+# If the name below doesn't work, you'll need to run:
+# kitty + list-fonts --psnames | grep Comic
+font_family      ComicShannsMonoNerdFontMono-Regular
+
+# Fallback fonts for symbols/icons if the main font doesn't have them
+# Nerd Font Mono usually covers all icons, but it's good practice.
+# This option typically points to the font file itself if it's not
+# installed globally, but usually, kitty finds it if it's in ~/.fonts/
+# You have the file at: /home/hrs/.fonts/ComicShannsMonoNerdFontMono-Regular.otf
+# However, you should install it to your system's font folder for best results.
+# If you insist on the file path, the syntax is more complex (using the PostScript name).
+# For now, let's use the assumed PostScript name:
+
+# Set the font size in points (pts)
+font_size        14.0
+
+# You can set this if the font looks too heavy or light:
+# bold_font        auto
+# italic_font      auto
+# bold_italic_font auto
+
+# ** 2. COLOR SETTINGS **
+
+# Match the GitHub Dark Default theme background color: #0d1117
+background       #0d1117
+
+# Match the Neovim foreground (text) color (assuming a light grey/white for contrast)
+# For the github_dark theme, a good foreground is often #e6edf3 or plain white:
+foreground       #ffffff
+
+# Optional: Add some window padding to prevent content from touching the edges
+# window_padding_width 10
+
+# ----------------------------------------------------------------------

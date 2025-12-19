@@ -1,0 +1,66 @@
+/* General Window */
+window {
+    margin: 0px;
+    border: 2px solid #3e3e3e;
+    background-color: #1e1e2e; /* Dark background */
+    border-radius: 16px;
+    font-family: "JetBrains Mono", "Fira Code", monospace;
+    font-size: 14px;
+}
+
+/* Input Search Box */
+#input {
+    margin: 10px;
+    border: none;
+    border-radius: 12px;
+    background-color: #313244; /* Slightly lighter than bg */
+    color: #cdd6f4;
+    padding: 10px;
+}
+
+#input image {
+    color: #cdd6f4;
+}
+
+/* The Inner Box holding the list */
+#inner-box {
+    margin: 10px;
+    background-color: transparent;
+}
+
+/* The List of Entries */
+#outer-box {
+    margin: 0px;
+    border: none;
+    background-color: transparent;
+}
+
+#scroll {
+    margin: 0px;
+    border: none;
+}
+
+#text {
+    margin: 5px;
+    color: #cdd6f4;
+}
+
+/* Individual Entry Styling */
+#entry {
+    margin: 2px 10px;
+    padding: 8px;
+    border-radius: 10px;
+    border: none;
+}
+
+#entry:selected {
+    background-color: #89b4fa; /* Accent color (Blue) */
+    color: #1e1e2e;
+    font-weight: bold;
+}
+
+/* Icons */
+#img {
+    margin-right: 10px;
+    background-color: transparent;
+}
