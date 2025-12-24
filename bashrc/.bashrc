@@ -118,36 +118,39 @@ fi
 
 ##############--More Aliases--##############
 
-
+#######--GNU-Privacy-Guard protected--#######
 alias decrypt="gpg --output new.tar.gz --decrypt"
 alias encrypt="gpg --symmetric --cipher-algo AES256 -o"
 alias archive="tar -czf -"
 alias unarchive="tar -xzf"
-
+#######
+alias finvim='nvim $(fzf -m --preview="bat --color=always {}")'
 alias ytdownload="yt-dlp -f "bestvideo+bestaudio/best" --merge-output-format mkv "
-
 
 export PATH="~/.gem/ruby/3.4.0/bin:$PATH"
 
 eval "$(starship init bash)"  
 eval "$(fzf --bash)"
-alias finvim='nvim $(fzf -m --preview="bat --color=always {}")'
 
+#######--Tmux--#######
+tmux() {
+    # Check if we are running Hyprland
+    if [[ "$XDG_CURRENT_DESKTOP" == "Hyprland" ]]; then
+        hyprctl dispatch fullscreen 0
+        command tmux "$@"
+        hyprctl dispatch fullscreen 0
+    else
+        command tmux "$@"
+    fi
+}
 
-
-# --- UNIVERSAL FASTFETCH LOADING: CHECKING FOR GRAPHICAL SUPPORT ---
-
+#######--Fastfetch & Nvim--######
 # List of known graphical terminal types that support image protocols:
 GRAPHICAL_TERMS="xterm-kitty|alacritty|konsole|xterm-256color|xterm"
-
-# Only run Fastfetch for interactive shells
 if [ "$PS1" ]; then
-    # Check if the current terminal type ($TERM) matches any known graphical terminal
     if [[ "$TERM" =~ $GRAPHICAL_TERMS ]]; then
-        # Load the graphical image config (works in Kitty, Alacritty, etc.)
         ( fastfetch -c ~/.config/fastfetch/shell.jsonc) 
     else
-        # Fallback for Tmux, Console, or minimal environments: use ASCII
         fastfetch -c ~/.config/fastfetch/config.jsonc
     fi
 fi

@@ -105,6 +105,52 @@ window#waybar.hidden {
 	color: #161320;
 	background: #bd93f9;
 }
+/* -----------------------------------------------------------------------------
+ * Bluetooth Module - Pastel Pill Theme
+ * -------------------------------------------------------------------------- */
+
+#bluetooth {
+    /* General spacing and font matching your bar */
+	margin-top: 6px;
+	margin-left: 8px;
+	padding-left: 10px;
+	padding-right: 10px;
+	margin-bottom: 0px;
+	border-radius: 10px;
+	transition: none;
+	color: #161320;
+	background:#89b4fa ;
+}
+
+/* State: Connected 
+   Matches your other pills (Cpu/Ram/Wifi) -> Pastel Background + Dark Text */
+#bluetooth.connected {
+    background-color: #89b4fa; /* Pastel Blue */
+    color: #11111b;            /* Very dark grey/black text for contrast */
+    border-radius: 20px;       /* Fully rounded "pill" shape */
+}
+
+/* State: ON (but not connected)
+   Keeps it visible but distinct from the "active" pills */
+#bluetooth.on {
+    background-color: #313244; /* Dark grey background */
+    color: #89b4fa;            /* Blue text icon */
+    border-radius: 20px;
+}
+
+/* State: OFF 
+   Subtle so it doesn't distract */
+#bluetooth.off {
+    background-color: transparent;
+    color: #585b70;            /* Dim grey text */
+}
+
+/* Optional: Scanning Mode */
+#bluetooth.discoverable {
+    background-color: #f9e2af; /* Yellow background */
+    color: #11111b;
+    border-radius: 20px;
+}
 
 #pulseaudio {
 	margin-top: 6px;

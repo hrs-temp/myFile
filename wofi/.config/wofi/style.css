@@ -1,34 +1,34 @@
-/* General Window */
+/* The Main Window: Transparent with a PINK border */
 window {
     margin: 0px;
-    border: 2px solid #3e3e3e;
-    background-color: #1e1e2e; /* Dark background */
-    border-radius: 16px;
-    font-family: "JetBrains Mono", "Fira Code", monospace;
-    font-size: 14px;
+    border: 2px solid rgba(255, 105, 180, 0.6); /* Hot Pink Border */
+    background-color: rgba(30, 30, 46, 0.5);    /* 50% opacity dark background */
+    border-radius: 15px;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 15px;
 }
 
-/* Input Search Box */
+/* The Search Bar */
 #input {
     margin: 10px;
+    border-radius: 10px;
     border: none;
-    border-radius: 12px;
-    background-color: #313244; /* Slightly lighter than bg */
-    color: #cdd6f4;
-    padding: 10px;
+    background-color: rgba(49, 50, 68, 0.4); 
+    color: #f5c2e7; /* Light Pink Text */
+    padding: 10px 15px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 }
 
 #input image {
-    color: #cdd6f4;
+    color: #f5c2e7;
 }
 
-/* The Inner Box holding the list */
+/* The List Container */
 #inner-box {
     margin: 10px;
     background-color: transparent;
 }
 
-/* The List of Entries */
 #outer-box {
     margin: 0px;
     border: none;
@@ -45,22 +45,24 @@ window {
     color: #cdd6f4;
 }
 
-/* Individual Entry Styling */
+/* The Entries */
 #entry {
-    margin: 2px 10px;
-    padding: 8px;
+    margin: 5px 10px;
+    padding: 10px;
     border-radius: 10px;
     border: none;
+    background-color: transparent;
+    transition: all 0.2s ease;
 }
 
+/* The "Cool" Selected State - MAGENTA GLOW */
 #entry:selected {
-    background-color: #89b4fa; /* Accent color (Blue) */
-    color: #1e1e2e;
+    background-color: rgba(255, 105, 180, 0.2); /* Low opacity pink highlight */
+    border: 1px solid rgba(255, 105, 180, 0.5); /* Thin pink border */
+    box-shadow: 0 0 10px rgba(255, 105, 180, 0.3); /* Pink Glow */
     font-weight: bold;
 }
 
-/* Icons */
 #img {
-    margin-right: 10px;
-    background-color: transparent;
+    margin-right: 12px;
 }
