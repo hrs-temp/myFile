@@ -38,4 +38,3 @@ vim.opt.relativenumber = true
 require("lazy").setup("plugins")
 require("vim-options")
 require("keybindings")
-require("config.big_files")

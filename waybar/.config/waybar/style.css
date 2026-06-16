@@ -1,81 +1,43 @@
-* {
-	border: none;
-	border-radius: 10px;
-    font-family: "JetbrainsMono Nerd Font" ;
-	font-size: 12px;
-	min-height: 8px;
+tooltip {
+    background: #1e1e2e;
+    border: 2px solid #FAE3B0;
+    border-radius: 15px;
+    padding: 15px;
 }
 
-window#waybar {
-	background: transparent;
+tooltip label {
+    color: #cdd6f4;
+    font-size: 18px;
+    font-family: "JetBrainsMono Nerd Font";
+    min-height: 8px;
 }
-
-window#waybar.hidden {
-	opacity: 0.2;
-}
-
-#window {
-	margin-top: 6px;
-	padding-left: 10px;
-	padding-right: 10px;
-	border-radius: 10px;
-	transition: none;
-    color: transparent;
-	background: transparent;
-}
-/* #tags { */
-/* 	margin-top: 6px; */
-/* 	margin-left: 12px; */
-/* 	font-size: 4px; */
-/* 	margin-bottom: 0px; */
-/* 	border-radius: 10px; */
-/* 	background: #161320; */
-/* 	transition: none; */
-/* } */
-/**/
-/* #tags button { */
-/* 	transition: none; */
-/* 	color: #B5E8E0; */
-/* 	background: transparent; */
-/* 	font-size: 16px; */
-/* 	border-radius: 2px; */
-/* } */
-/**/
-/* #tags button.occupied { */
-/* 	transition: none; */
-/* 	color: #F28FAD; */
-/* 	background: transparent; */
-/* 	font-size: 4px; */
-/* } */
-/**/
-/* #tags button.focused { */
-/* 	color: #ABE9B3; */
-/*     border-top: 2px solid #ABE9B3; */
-/*     border-bottom: 2px solid #ABE9B3; */
-/* } */
-/**/
-/* #tags button:hover { */
-/* 	transition: none; */
-/* 	box-shadow: inherit; */
-/* 	text-shadow: inherit; */
-/* 	color: #FAE3B0; */
-/*     border-color: #E8A2AF; */
-/*     color: #E8A2AF; */
-/* } */
-/**/
-/* #tags button.focused:hover { */
-/*     color: #E8A2AF; */
-/* } */
 
 * {
     border: none;
-    border-radius: 10px; /* Added 'px' here */
+    border-radius: 10px;
     font-family: "JetbrainsMono Nerd Font";
     font-size: 12px;
     min-height: 8px;
 }
 
-/* Rename #tags to #workspaces to match the new config */
+window#waybar {
+    background: transparent;
+}
+
+window#waybar.hidden {
+    opacity: 0.2;
+}
+
+#window {
+    margin-top: 6px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 10px;
+    transition: none;
+    color: transparent;
+    background: transparent;
+}
+
 #workspaces {
     margin-top: 6px;
     margin-left: 12px;
@@ -95,89 +57,153 @@ window#waybar.hidden {
 }
 
 #network {
-	margin-top: 6px;
-	margin-left: 8px;
-	padding-left: 10px;
-	padding-right: 10px;
-	margin-bottom: 0px;
-	border-radius: 10px;
-	transition: none;
-	color: #161320;
-	background: #bd93f9;
+    margin-top: 6px;
+    margin-left: 8px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 0px;
+    border-radius: 10px;
+    transition: none;
+    color: #161320;
+    background: #bd93f9;
 }
-/* -----------------------------------------------------------------------------
- * Bluetooth Module - Pastel Pill Theme
- * -------------------------------------------------------------------------- */
 
+/* --- BLUETOOTH --- */
 #bluetooth {
-    /* General spacing and font matching your bar */
-	margin-top: 6px;
-	margin-left: 8px;
-	padding-left: 10px;
-	padding-right: 10px;
-	margin-bottom: 0px;
-	border-radius: 10px;
-	transition: none;
-	color: #161320;
-	background:#89b4fa ;
+    margin-top: 6px;
+    margin-left: 8px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 0px;
+    border-radius: 10px;
+    transition: none;
+    color: #161320;
+    background: #89b4fa;
 }
 
-/* State: Connected 
-   Matches your other pills (Cpu/Ram/Wifi) -> Pastel Background + Dark Text */
 #bluetooth.connected {
-    background-color: #89b4fa; /* Pastel Blue */
-    color: #11111b;            /* Very dark grey/black text for contrast */
-    border-radius: 20px;       /* Fully rounded "pill" shape */
-}
-
-/* State: ON (but not connected)
-   Keeps it visible but distinct from the "active" pills */
-#bluetooth.on {
-    background-color: #313244; /* Dark grey background */
-    color: #89b4fa;            /* Blue text icon */
-    border-radius: 20px;
-}
-
-/* State: OFF 
-   Subtle so it doesn't distract */
-#bluetooth.off {
-    background-color: transparent;
-    color: #585b70;            /* Dim grey text */
-}
-
-/* Optional: Scanning Mode */
-#bluetooth.discoverable {
-    background-color: #f9e2af; /* Yellow background */
+    background-color: #89b4fa;
     color: #11111b;
     border-radius: 20px;
 }
 
+#bluetooth.on {
+    background-color: #313244;
+    color: #89b4fa;
+    border-radius: 20px;
+}
+
+#bluetooth.off {
+    background-color: transparent;
+    color: #585b70;
+}
+
+#bluetooth.discoverable {
+    background-color: #f9e2af;
+    color: #11111b;
+    border-radius: 20px;
+}
+
+/* --------------
+ * Audio Group 
+ * --------------
+*/
+
+#group-audio {
+    /* The Group handles the placement in the bar */
+    margin-top: 6px;
+    margin-left: 8px;
+    margin-bottom: 0px;
+    padding: 0px; 
+    transition: all 0.3s ease;
+}
+
 #pulseaudio {
-	margin-top: 6px;
-	margin-left: 8px;
-	padding-left: 10px;
-	padding-right: 10px;
-	margin-bottom: 0px;
-	border-radius: 10px;
-	transition: none;
-	color: #1A1826;
-	background: #FAE3B0;
+    margin-top: 6px;
+    margin-left: 8px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 0px;
+    border-radius: 10px;
+    background-color: #FAE3B0;
+    color: #1A1826;
+}
+
+#pulseaudio-slider trough {
+    min-height: 10px;
+    min-width: 80px;
+    border-radius: 10px;
+    background-color: #FAE3B0;
+    
+    margin-top: 5px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+#pulseaudio-slider highlight {
+    min-width: 10px;
+    border-radius: 10px;
+    background-color: #1A1826;
+}
+
+/* --------
+ * Backlight Group 
+ * --------
+*/
+
+#group-brightness {
+    margin-top: 6px;
+    margin-left: 8px;
+    margin-bottom: 0px;
+    padding: 0px;
+    transition: all 0.3s ease;
+}
+
+#backlight {
+
+    margin-top: 6px;
+    margin-left: 8px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 0px;
+    border-radius: 10px;
+    background-color: #F8BD96;
+    color: #161320;
+}
+
+#backlight-slider trough {
+    min-height: 10px;
+    min-width: 80px;
+    border-radius: 10px;
+    background-color: #F8BD96;
+    
+    margin-top: 5px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+#backlight-slider highlight {
+    min-width: 10px;
+    border-radius: 10px;
+    background-color: #161320;
 }
 
 #battery {
-	margin-top: 6px;
-	margin-left: 8px;
-	padding-left: 10px;
-	padding-right: 10px;
-	margin-bottom: 0px;
-	border-radius: 10px;
-	transition: none;
-	color: #161320;
-	background: #B5E8E0;
+    margin-top: 6px;
+    margin-left: 8px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 0px;
+    border-radius: 10px;
+    transition: none;
+    color: #161320;
+    background: #B5E8E0;
 }
 
 #battery.charging, #battery.plugged {
-	color: #161320;
+    color: #161320;
     background-color: #B5E8E0;
 }
 
@@ -198,123 +224,102 @@ window#waybar.hidden {
     }
 }
 
-#backlight {
-	margin-top: 6px;
-	margin-left: 8px;
-	padding-left: 10px;
-	padding-right: 10px;
-	margin-bottom: 0px;
-	border-radius: 10px;
-	transition: none;
-	color: #161320;
-	background: #F8BD96;
-}
 #clock {
-	margin-top: 6px;
-	margin-left: 8px;
-	padding-left: 10px;
-	padding-right: 10px;
-	margin-bottom: 0px;
-	border-radius: 10px;
-	transition: none;
-	color: #161320;
-	background: #ABE9B3;
-	/*background: #1A1826;*/
+    margin-top: 6px;
+    margin-left: 8px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 0px;
+    border-radius: 10px;
+    transition: none;
+    color: #161320;
+    background: #ABE9B3;
+}
+
+#cava {
+    /* You can change this to any color, e.g., Catppuccin Blue (#89b4fa) or Mauve (#cba6f7) */
+    color: #cdd6f4; 
+    margin-left: 8px;
+    margin-right: 8px;
+    padding-left: 6px;
+    padding-right: 6px;
+    font-family: "JetBrains Mono Nerd Font", monospace;
+    font-size: 16px; /* Adjust this to make the bars taller or shorter */
+    padding-bottom: 0px;
+    padding-top: 0px;
 }
 
 #memory {
-	margin-top: 6px;
-	margin-left: 8px;
-	padding-left: 10px;
-	margin-bottom: 0px;
-	padding-right: 10px;
-	border-radius: 10px;
-	transition: none;
-	color: #161320;
-	background: #DDB6F2;
-}
-#cpu {
-	margin-top: 6px;
-	margin-left: 8px;
-	padding-left: 10px;
-	margin-bottom: 0px;
-	padding-right: 10px;
-	border-radius: 10px;
-	transition: none;
-	color: #161320;
-	background: #96CDFB;
+    margin-top: 6px;
+    margin-left: 8px;
+    padding-left: 10px;
+    margin-bottom: 0px;
+    padding-right: 10px;
+    border-radius: 10px;
+    transition: none;
+    color: #161320;
+    background: #DDB6F2;
 }
 
-#tray {
-	margin-top: 6px;
-	margin-left: 8px;
-	padding-left: 10px;
-	margin-bottom: 0px;
-	padding-right: 10px;
-	border-radius: 10px;
-	transition: none;
-	color: #B5E8E0;
-	background: #161320;
+#cpu {
+    margin-top: 6px;
+    margin-left: 8px;
+    padding-left: 10px;
+    margin-bottom: 0px;
+    padding-right: 10px;
+    border-radius: 10px;
+    transition: none;
+    color: #161320;
+    background: #96CDFB;
 }
 
 #custom-launcher {
-	font-size: 24px;
-	margin-top: 6px;
-	margin-left: 8px;
-	padding-left: 10px;
-	padding-right: 5px;
-	border-radius: 10px;
-	transition: none;
+    font-size: 24px;
+    margin-top: 6px;
+    margin-left: 8px;
+    padding-left: 10px;
+    padding-right: 5px;
+    border-radius: 10px;
+    transition: none;
     color: #89DCEB;
     background: #161320;
 }
 
 #custom-power {
-	font-size: 20px;
-	margin-top: 6px;
-	margin-left: 8px;
-	margin-right: 8px;
-	padding-left: 10px;
-	padding-right: 5px;
-	margin-bottom: 0px;
-	border-radius: 10px;
-	transition: none;
-	color: #161320;
-	background: #F28FAD;
-}
-
-#custom-wallpaper {
-	margin-top: 6px;
-	margin-left: 8px;
-	padding-left: 10px;
-	padding-right: 10px;
-	margin-bottom: 0px;
-	border-radius: 10px;
-	transition: none;
-	color: #161320;
-	background: #C9CBFF;
-}
-
-#custom-updates {
-	margin-top: 6px;
-	margin-left: 8px;
-	padding-left: 10px;
-	padding-right: 10px;
-	margin-bottom: 0px;
-	border-radius: 10px;
-	transition: none;
-	color: #161320;
-	background: #E8A2AF;
+    font-size: 20px;
+    margin-top: 6px;
+    margin-left: 8px;
+    margin-right: 8px;
+    padding-left: 10px;
+    padding-right: 5px;
+    margin-bottom: 0px;
+    border-radius: 10px;
+    transition: none;
+    color: #161320;
+    background: #F28FAD;
 }
 
 #custom-media {
-	margin-top: 6px;
-	margin-left: 8px;
-	padding-left: 10px;
-	padding-right: 10px;
-	margin-bottom: 0px;
-	border-radius: 10px;
-	transition: none;
-	color: #161320;
-	background: #F2CDCD;
+    margin-top: 6px;
+    margin-left: 8px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 0px;
+    border-radius: 10px;
+    transition: none;
+    color: #161320;
+    background: #F2CDCD;
+}
+
+#memory.warning, #cpu.warning {
+    color: #f9e2af; /* Yellow */
+}
+
+#memory.critical, #cpu.critical {
+    color: #f38ba8; /* Red */
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
 }

@@ -1,0 +1,32 @@
+[binds]
+# --- SYSTEM ---
+q = quit
+<Escape> = quit
+i = overlay
+
+# --- NAVIGATION ---
+l = next
+h = prev
+
+# Wrap multi-character keys in < >
+<Right> = next
+<Left> = prev
+
+<space> = next
+<BackSpace> = prev
+<Return> = next
+
+# --- ACTIONS ---
+# Remove '&' so imv waits for your answer before moving to the next image.
+# This prevents accidentally skipping 20 images while the prompt is open.
+
+x = exec sh -c '~/.config/imv/smart_actions.sh delete "$imv_current_file" "$imv_pid" &'
+
+m = exec sh -c '~/.config/imv/smart_actions.sh move "$imv_current_file" "$imv_pid" &'
+
+# --- ROTATION ---
+# r = Rotate 90 degrees Clockwise
+r = exec sh -c '~/.config/imv/rotate.sh 90 "$imv_current_file" &'
+
+# R (Shift+r) = Rotate -90 degrees (Counter-Clockwise)
+R = exec sh -c '~/.config/imv/rotate.sh 90 "$imv_current_file" &'

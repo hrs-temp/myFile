@@ -1,10 +1,8 @@
 return {
-  {
-    "hrsh7th/cmp-nvim-lsp",
-  },
+  { "hrsh7th/cmp-nvim-lsp" },
   {
     "L3MON4D3/LuaSnip",
-    run = "make install_jsregexp",
+    build = "make install_jsregexp",
     dependencies = {
       "saadparwaiz1/cmp_luasnip",
       "rafamadriz/friendly-snippets",
@@ -12,9 +10,17 @@ return {
   },
   {
     "hrsh7th/nvim-cmp",
+    dependencies = {
+      "hrsh7th/cmp-buffer", -- Source for text in current buffer
+      "hrsh7th/cmp-path", -- Source for file system paths
+      "hrsh7th/cmp-cmdline", -- Source for vim's cmdline (: / ?)
+    },
     config = function()
       local cmp = require("cmp")
+      local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+
       require("luasnip.loaders.from_vscode").lazy_load()
+
       cmp.setup({
         snippet = {
           expand = function(args)
@@ -28,16 +34,15 @@ return {
         mapping = cmp.mapping.preset.insert({
           ["<C-b>"] = cmp.mapping.scroll_docs(-4),
           ["<C-f>"] = cmp.mapping.scroll_docs(4),
-          ["<C-Space>"] = cmp.mapping.complete(),
+          -- ["<C-p>"] = cmp.mapping.complete(),
           ["<C-e>"] = cmp.mapping.abort(),
           ["<CR>"] = cmp.mapping.confirm({ select = true }),
-
-          ["<C-j>"] = function(fallback)
+          ["<C-n>"] = function(fallback)
             local luasnip = require("luasnip")
             if cmp.visible() then
               cmp.select_next_item()
-            elseif luasnip.expand_or_jumpable() then
-              luasnip.expand_or_jump()
+            elseif luasnip.jumpable() then
+              luasnip.jump()
             else
               fallback()
             end
@@ -55,7 +60,7 @@ return {
             end
           end,
 
-          ["<C-k>"] = function(fallback)
+          ["<C-p>"] = function(fallback)
             local luasnip = require("luasnip")
             if cmp.visible() then
               cmp.select_prev_item()
@@ -65,15 +70,34 @@ return {
               fallback()
             end
           end,
-
         }),
         sources = cmp.config.sources({
           { name = "nvim_lsp" },
           { name = "luasnip" },
+          { name = "path" },
         }, {
           { name = "buffer" },
         }),
       })
+
+      -- 🔍 Setup for search (/)
+      cmp.setup.cmdline("/", {
+        mapping = cmp.mapping.preset.cmdline(),
+        sources = {
+          { name = "buffer" },
+        },
+      })
+
+      -- 💻 Setup for command line (:)
+      cmp.setup.cmdline(":", {
+        mapping = cmp.mapping.preset.cmdline(),
+        sources = cmp.config.sources({
+          { name = "path" },
+        }, {
+          { name = "cmdline" },
+        }),
+      })
+      cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
     end,
   },
 }

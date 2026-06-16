@@ -1,11 +1,6 @@
-local is_bare = require("utils.term").is_bare_terminal
-
 return {
   'nvim-lualine/lualine.nvim',
   dependencies = { 'nvim-tree/nvim-web-devicons' },
-  cond = function()
-    return not is_bare()
-  end,
   config = function()
     require('lualine').setup({
       options = {

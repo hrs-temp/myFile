@@ -1,133 +1,398 @@
 * {
-  border: none;
-  border-radius: 0;
-  min-height: 0;
-  font-family: JetBrainsMono Nerd Font;
-  font-size: 13px;
+    border: none;
+    border-radius: 10px;
+    font-family: "JetbrainsMono Nerd Font";
+    font-size: 12px;
+    min-height: 8px;
 }
 
 window#waybar {
-  background-color: #181825;
-  transition-property: background-color;
-  transition-duration: 0.5s;
+    background: transparent;
 }
 
 window#waybar.hidden {
-  opacity: 0.5;
+    opacity: 0.2;
+}
+
+#window {
+    margin-top: 6px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 10px;
+    transition: none;
+    color: transparent;
+    background: transparent;
 }
 
 #workspaces {
-  background-color: transparent;
+    margin-top: 6px;
+    margin-left: 12px;
+    background: #161320;
+    border-radius: 10px;
 }
 
 #workspaces button {
-  all: initial;
-  /* Remove GTK theme values (waybar #1351) */
-  min-width: 0;
-  /* Fix weird spacing in materia (waybar #450) */
-  box-shadow: inset 0 -3px transparent;
-  /* Use box-shadow instead of border so the text isn't offset */
-  padding: 6px 18px;
-  margin: 6px 3px;
-  border-radius: 4px;
-  background-color: #1e1e2e;
-  color: #cdd6f4;
+    color: #B5E8E0;
+    font-size: 16px;
 }
 
 #workspaces button.active {
-  color: #1e1e2e;
-  background-color: #cdd6f4;
-}
-
-#workspaces button:hover {
-  box-shadow: inherit;
-  text-shadow: inherit;
-  color: #1e1e2e;
-  background-color: #cdd6f4;
-}
-
-#workspaces button.urgent {
-  background-color: #f38ba8;
-}
-
-#memory,
-#custom-power,
-#battery,
-#backlight,
-#wireplumber,
-#network,
-#clock,
-#tray {
-  border-radius: 4px;
-  margin: 6px 3px;
-  padding: 6px 12px;
-  background-color: #1e1e2e;
-  color: #181825;
-}
-
-#custom-power {
-  margin-right: 6px;
-}
-
-#custom-logo {
-  padding-right: 7px;
-  padding-left: 7px;
-  margin-left: 5px;
-  font-size: 15px;
-  border-radius: 8px 0px 0px 8px;
-  color: #1793d1;
-}
-
-#memory {
-  background-color: #fab387;
-}
-
-#battery {
-  background-color: #f38ba8;
-}
-
-#battery.warning,
-#battery.critical,
-#battery.urgent {
-  background-color: #ff0000;
-  color: #FFFF00;
-}
-
-#battery.charging {
-  background-color: #a6e3a1;
-  color: #181825;
-}
-
-#backlight {
-  background-color: #fab387;
-}
-
-#wireplumber {
-  background-color: #f9e2af;
+    color: #ABE9B3;
+    border-top: 2px solid #ABE9B3;
+    border-bottom: 2px solid #ABE9B3;
 }
 
 #network {
-  background-color: #94e2d5;
-  padding-right: 17px;
+    margin-top: 6px;
+    margin-left: 8px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 0px;
+    border-radius: 10px;
+    transition: none;
+    color: #161320;
+    background: #bd93f9;
+}
+
+/* --- BLUETOOTH --- */
+#bluetooth {
+    margin-top: 6px;
+    margin-left: 8px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 0px;
+    border-radius: 10px;
+    transition: none;
+    color: #161320;
+    background: #89b4fa;
+}
+
+#bluetooth.connected {
+    background-color: #89b4fa;
+    color: #11111b;
+    border-radius: 20px;
+}
+
+#bluetooth.on {
+    background-color: #313244;
+    color: #89b4fa;
+    border-radius: 20px;
+}
+
+#bluetooth.off {
+    background-color: transparent;
+    color: #585b70;
+}
+
+#bluetooth.discoverable {
+    background-color: #f9e2af;
+    color: #11111b;
+    border-radius: 20px;
+}
+
+/* -----------------------------------------------------------------------------
+ * Audio Group & Modules
+ * -------------------------------------------------------------------------- */
+
+/* Style the Group container to handle spacing/margins */
+#group-audio {
+    margin-top: 6px;
+    margin-left: 8px;
+    padding-left: 0px;
+    padding-right: 0px;
+    margin-bottom: 0px;
+    transition: all 0.3s ease-in-out;
+}
+
+/* 1. Style the Icon (Restores your Original Look) */
+#pulseaudio {
+    background: #FAE3B0;        /* Original Yellow Color */
+    color: #1A1826;             /* Dark Text */
+    border-radius: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-right: 5px;          /* Spacing between icon and slider */
+}
+
+/* 2. Style the Slider (Matches the Icon) */
+#pulseaudio-slider trough {
+    min-height: 10px;
+    min-width: 80px;
+    border-radius: 10px;
+    background-color: #FAE3B0;  /* Match the Yellow Background */
+    margin-right: 10px;
+}
+
+#pulseaudio-slider highlight {
+    min-width: 10px;
+    border-radius: 10px;
+    background-color: #1A1826;  /* Dark fill color */
+}
+
+/* -----------------------------------------------------------------------------
+ * Backlight Group & Modules
+ * -------------------------------------------------------------------------- */
+
+#group-brightness {
+    margin-top: 6px;
+    margin-left: 8px;
+    padding-left: 0px;
+    padding-right: 0px;
+    margin-bottom: 0px;
+    transition: all 0.3s ease-in-out;
+}
+
+/* 1. Style the Icon (Restores your Original Look) */
+#backlight {
+    background: #F8BD96;        /* Original Peach Color */
+    color: #161320;             /* Dark Text */
+    border-radius: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-right: 5px;
+}
+
+/* 2. Style the Slider (Matches the Icon) */
+#backlight-slider trough {
+    min-height: 10px;
+    min-width: 80px;
+    border-radius: 10px;
+    background-color: #F8BD96;  /* Match the Peach Background */
+    margin-right: 10px;
+}
+
+#backlight-slider highlight {
+    min-width: 10px;
+    border-radius: 10px;
+    background-color: #161320;  /* Dark fill color */
+}
+
+#pulseaudio {
+    background: transparent;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    padding-left: 0px;
+    padding-right: 5px; 
+}
+
+/* Slider Styling */
+#pulseaudio-slider slider {
+    min-height: 10px;
+    min-width: 10px;
+    opacity: 0;
+    background-image: none;
+    border: none;
+    box-shadow: none;
+}
+
+#pulseaudio-slider trough {
+    min-height: 5px;
+    min-width: 60px;
+    border-radius: 5px;
+    background-color: rgba(0,0,0,0.1); /* Subtle shadow track */
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-left: 10px;
+}
+
+#pulseaudio-slider highlight {
+    min-width: 10px;
+    border-radius: 5px;
+    background-color: #1A1826; /* Matches text color */
+}
+
+/* --- BACKLIGHT GROUP (Original Color: #F8BD96) --- */
+#group-brightness {
+    margin-top: 6px;
+    margin-left: 8px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 0px;
+    border-radius: 10px;
+    transition: all 0.3s ease-in-out; 
+    
+    /* RESTORED ORIGINAL COLORS */
+    color: #161320;
+    background: #F8BD96; 
+}
+
+#backlight {
+    background: transparent;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    padding-left: 0px;
+    padding-right: 5px; 
+}
+
+/* Slider Styling */
+#backlight-slider slider {
+    min-height: 10px;
+    min-width: 10px;
+    opacity: 0;
+    background-image: none;
+    border: none;
+    box-shadow: none;
+}
+
+#backlight-slider trough {
+    min-height: 5px;
+    min-width: 60px;
+    border-radius: 5px;
+    background-color: rgba(0,0,0,0.1); /* Subtle shadow track */
+    margin-left: 10px;
+}
+
+#backlight-slider highlight {
+    min-width: 10px;
+    border-radius: 5px;
+    background-color: #161320; /* Matches text color */
+}
+
+
+/* --- OTHER MODULES --- */
+
+#battery {
+    margin-top: 6px;
+    margin-left: 8px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 0px;
+    border-radius: 10px;
+    transition: none;
+    color: #161320;
+    background: #B5E8E0;
+}
+
+#battery.charging, #battery.plugged {
+    color: #161320;
+    background-color: #B5E8E0;
+}
+
+#battery.critical:not(.charging) {
+    background-color: #B5E8E0;
+    color: #161320;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+@keyframes blink {
+    to {
+        background-color: #BF616A;
+        color: #B5E8E0;
+    }
 }
 
 #clock {
-  font-family: JetBrainsMono Nerd Font;
-  background-color: #cba6f7;
+    margin-top: 6px;
+    margin-left: 8px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 0px;
+    border-radius: 10px;
+    transition: none;
+    color: #161320;
+    background: #ABE9B3;
+}
+
+#memory {
+    margin-top: 6px;
+    margin-left: 8px;
+    padding-left: 10px;
+    margin-bottom: 0px;
+    padding-right: 10px;
+    border-radius: 10px;
+    transition: none;
+    color: #161320;
+    background: #DDB6F2;
+}
+
+#cpu {
+    margin-top: 6px;
+    margin-left: 8px;
+    padding-left: 10px;
+    margin-bottom: 0px;
+    padding-right: 10px;
+    border-radius: 10px;
+    transition: none;
+    color: #161320;
+    background: #96CDFB;
+}
+
+#tray {
+    margin-top: 6px;
+    margin-left: 8px;
+    padding-left: 10px;
+    margin-bottom: 0px;
+    padding-right: 10px;
+    border-radius: 10px;
+    transition: none;
+    color: #B5E8E0;
+    background: #161320;
+}
+
+#custom-launcher {
+    font-size: 24px;
+    margin-top: 6px;
+    margin-left: 8px;
+    padding-left: 10px;
+    padding-right: 5px;
+    border-radius: 10px;
+    transition: none;
+    color: #89DCEB;
+    background: #161320;
 }
 
 #custom-power {
-  background-color: #f2cdcd;
+    font-size: 20px;
+    margin-top: 6px;
+    margin-left: 8px;
+    margin-right: 8px;
+    padding-left: 10px;
+    padding-right: 5px;
+    margin-bottom: 0px;
+    border-radius: 10px;
+    transition: none;
+    color: #161320;
+    background: #F28FAD;
 }
 
-
-tooltip {
-  border-radius: 8px;
-  padding: 15px;
-  background-color: #131822;
+#custom-wallpaper {
+    margin-top: 6px;
+    margin-left: 8px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 0px;
+    border-radius: 10px;
+    transition: none;
+    color: #161320;
+    background: #C9CBFF;
 }
 
-tooltip label {
-  padding: 5px;
-  background-color: #131822;
+#custom-updates {
+    margin-top: 6px;
+    margin-left: 8px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 0px;
+    border-radius: 10px;
+    transition: none;
+    color: #161320;
+    background: #E8A2AF;
+}
+
+#custom-media {
+    margin-top: 6px;
+    margin-left: 8px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 0px;
+    border-radius: 10px;
+    transition: none;
+    color: #161320;
+    background: #F2CDCD;
 }

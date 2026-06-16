@@ -75,10 +75,30 @@ esac
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    # alias ls='ls --color=auto'
-    alias ls='colorls'
-    #alias dir='dir --color=auto'
-    #alias vdir='vdir --color=auto'
+    # Check for ls replacements and alias accordingly
+    if command -v eza &> /dev/null; then
+        # eza is the modern, maintained fork of exa
+        alias ls='eza --icons --git --group-directories-first'
+        alias ll='eza -alh --icons --git --group-directories-first'
+        alias lt='eza -aT --icons --group-directories-first' # Tree view
+
+    elif command -v lsd &> /dev/null; then
+        # lsd (LSDeluxe)
+        alias ls='lsd'
+        alias ll='lsd -al'
+        alias lt='lsd --tree'
+
+    elif command -v colorls &> /dev/null; then
+        # colorls (Ruby-based)
+        alias ls='colorls'
+        alias ll='colorls -al'
+        alias lt='colorls --tree'
+
+    else
+        # Fallback to standard GNU ls
+        alias ls='ls --color=auto'
+        alias ll='ls -al --color=auto'
+    fi
 
     alias grep='grep --color=auto'
     alias fgrep='fgrep --color=auto'
@@ -86,7 +106,7 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 # colored GCC warnings and errors
-#export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 # some more ls aliases
 alias la='ls -A'
@@ -119,13 +139,16 @@ fi
 ##############--More Aliases--##############
 
 #######--GNU-Privacy-Guard protected--#######
-alias decrypt="gpg --output new.tar.gz --decrypt"
-alias encrypt="gpg --symmetric --cipher-algo AES256 -o"
-alias archive="tar -czf -"
+alias decrypt="gpg --output new.tar.gz --decrypt --pinentry-mode ask"
+alias encrypt="gpg --symmetric --cipher-algo AES256 -o" ## output file name 
+alias archive="tar -czf -" ## stdout(-)stdin <source> 
 alias unarchive="tar -xzf"
 #######
 alias finvim='nvim $(fzf -m --preview="bat --color=always {}")'
 alias ytdownload="yt-dlp -f "bestvideo+bestaudio/best" --merge-output-format mkv "
+alias gnome-login="dbus-send --system --type=method_call --dest=org.gnome.DisplayManager --print-reply /org/gnome/DisplayManager/LocalDisplayFactory org.gnome.DisplayManager.LocalDisplayFactory.CreateTransientDisplay"
+
+
 
 export PATH="~/.gem/ruby/3.4.0/bin:$PATH"
 
@@ -156,3 +179,6 @@ if [ "$PS1" ]; then
 fi
 
 export EDITOR=nvim
+. "$HOME/.cargo/env"
+
+export MANPAGER="nvim +Man!"

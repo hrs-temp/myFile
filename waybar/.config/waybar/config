@@ -1,47 +1,100 @@
 {
-	"layer": "top",
-	"modules-left": ["custom/launcher","cpu","memory","custom/media","network","bluetooth"],
-	"modules-center": ["hyprland/workspaces"],
-	"modules-right": ["backlight","pulseaudio","clock", "battery","custom/power"],
-	
-	"pulseaudio": {
-		"tooltip": false,
-		"scroll-step": 5,
-		"format": "{icon} {volume}%",
-		"format-muted": "{icon} {volume}%",
-		"on-click":"pactl set-sink-mute @DEFAULT_SINK@ toggle",
-		"format-icons": {
-			"default": ["", "", ""]
-		}
-	},
+    "layer": "top",
+    "modules-left": ["custom/launcher","cpu","custom/media","network","bluetooth","cava"],
+    "modules-center": ["hyprland/workspaces"],
+    "modules-right": ["group/brightness", "group/audio", "clock", "battery", "custom/power"],
+
+    // --- GROUPS WITH DRAWERS ---
+    "group/audio": {
+        "orientation": "horizontal",
+        "drawer": {
+            "transition-duration": 500,
+            "children-class": "not-power",
+            "transition-left-to-right": false
+        },
+        "modules": [
+            "pulseaudio",
+            "pulseaudio/slider"
+        ]
+    },
+    
+    "group/brightness": {
+        "orientation": "horizontal",
+        "drawer": {
+            "transition-duration": 500,
+            "children-class": "not-memory",
+            "transition-left-to-right": false
+        },
+        "modules": [
+            "backlight",
+            "backlight/slider"
+        ]
+    },
+
+    // --- SLIDERS ---
+    "pulseaudio/slider": {
+        "min": 0,
+        "max": 100,
+        "orientation": "horizontal"
+    },
+
+    "backlight/slider": {
+        "min": 0,
+        "max": 100,
+        "orientation": "horizontal"
+    },
+
+    // --- MODULES ---
+    "pulseaudio": {
+        "format": "{icon} {volume}%",
+        "format-bluetooth": "{icon}  {volume}%",
+        "format-muted": "󰝟 ",
+        "format-icons": {
+            "headphone": " ",
+            "hands-free": "󰋎 ",
+            "headset": "󰋎 ",
+            "phone": " ",
+            "portable": " ",
+            "car": "",
+            "default": ["", "", " "]
+        },
+        // Left click opens slider (handled by drawer), Right click opens mixer
+        "on-click-right": "pavucontrol -t 3", 
+        "on-click-middle": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+        "tooltip-format": "{desc} | {volume}%"
+    },
 
     "hyprland/workspaces": {
-		"num-tags": 6
+        "num-tags": 6
     },
+    
     "network": {
-        "tooltip": true,
+        "tooltip": false,
         "format-wifi": "  {essid}",
         "format-ethernet": "󰈀  {ifname}",
-        "format-disconnected": "󰖪  Disconnected",
+        "format-disconnected": "󰖪 Disconnected",
         "on-click": "~/.config/system_scripts/wifi-menu.sh"
     },
-	"backlight": {
-		"tooltip": false,
-		"format": " {}%",
-		"interval":1,
+
+    "backlight": {
+        "tooltip": false,
+        "format": " {}%",
+        "interval":1,
         "on-scroll-up": "light -A 5",
-		"on-scroll-down": "light -U 5"
-	},
+        "on-scroll-down": "light -U 5"
+    },
+
     "bluetooth": {
         "format": " {status}",
         "format-connected": " {device_alias}",
         "format-connected-battery": " {device_alias} {device_battery_percentage}%",
         "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
-        "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
-        "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
-        "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%",
+        "tooltip-format-connected": "{controller_alias}\t{num_connections} connected\n\n{device_enumerate}",
+        "tooltip-format-enumerate-connected": "{device_alias}",
+        "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_battery_percentage}%",
         "on-click": "blueman-manager"
     },
+
     "battery": {
         "states": {
             "good": 95,
@@ -52,25 +105,85 @@
         "format-charging": " {capacity}%",
         "format-plugged": " {capacity}%",
         "format-alt": "{time} {icon}",
-        "format-icons": ["", "", "", "", ""]
+        "format-icons": ["", "", "", "", ""],
+        "tooltip": false,
     },
-	"tray":{
-		"icon-size":18,
-		"spacing": 10
-	},
+
+    "tray":{
+        "icon-size":18,
+        "spacing": 10
+    },
+
     "clock": {
-        "format": " {:%I:%M %p  󰃭 %d/%m/%Y}"
+        "format": " {:%I:%M %p  󰃭 %d/%m/%Y}",
+        "tooltip-format": "<tt>{calendar}</tt>",
+        "calendar": {
+            "mode"          : "month",
+            "mode-mon-col"  : 3,
+            "weeks-pos"     : "right",
+            "on-scroll"     : 1,
+            "format": {
+                "months":     "<span color='#ffead3'><b>{}</b></span>",
+                "days":       "<span color='#ecc6d9'><b>{}</b></span>",
+                "weeks":      "<span color='#99ffdd'><b>W{}</b></span>",
+                "today":      "<span color='#ff6699'><b><u>{}</u></b></span>"
+            }
+        },
+
+        "actions":  {
+            "on-click-right": "mode",
+            "on-scroll-up": "shift_up",
+            "on-scroll-down": "shift_down"
+        }
     },
+
     "cpu": {
-        "interval": 15,
+        "interval": 10,
         "format": " {}%",
-        "max-length": 10
+        "max-length": 10,
+        "on-click": "kitty --title btop sh -c 'btop'", 
+        "states": {
+            "warning": 60,
+            "critical": 80
+        }
     },
+
+    "cava": {
+        "framerate": 60,
+        "autosens": 0,
+        "sensitivity": 30,
+        "bars": 14,
+        "lower_cutoff_freq": 50,
+        "higher_cutoff_freq": 10000,
+        "method": "pipewire",
+        "source": "auto",
+        "stereo": true,
+        "reverse": false,
+        "bar_delimiter": 0,
+        "monstercat": true,
+        "waves": true,
+        "noise_reduction": 0.77,
+        "input_delay": 2,
+        "format-icons" : [" ", "▂", "▃", "▄", "▅", "▆", "▇", "█" ],
+        "actions": {
+            "on-click-right": "mode"
+        }
+    },
+
     "memory": {
         "interval": 30,
         "format": " {}%",
-        "max-length": 10
+        "format-alt": " {used:0.1f}G", 
+        "max-length": 10,
+        "tooltip": true,
+        "tooltip-format": "Memory - {used:0.1f}GB used", 
+        "on-click-right": "kitty --title btop sh -c 'btop'", 
+        "states": {
+            "warning": 70,
+            "critical": 90
+        }
     },
+
     "custom/media": {
         "interval": 30,
         "format": "{icon} {}",
@@ -84,24 +197,17 @@
         "exec": "$HOME/.config/system_scripts/mediaplayer.py 2> /dev/null",
         "on-click": "playerctl play-pause"
     },
+
     "custom/launcher":{
         "format": " ",
         "on-click": "rofi -show drun",
-        "on-click-right": "killall rofi"
+        "on-click-right": "killall rofi",
+        "tooltip": false
     },
+
     "custom/power":{
         "format": " ",
         "on-click": "bash ~/.config/rofi/leave/leave.sh",
+        "tooltip": false
     },
-    "custom/updates":{
-        "format": "{} Update(s)",
-        "exec": "checkupdates | wc -l",
-        "exec-if": "[[ $(checkupdates | wc -l) != 0 ]]",
-        "interval": 15,
-        "on-click": "kitty -e yay -Syu && notify-send 'The system has been updated' "
-    },
-    "custom/wallpaper":{
-        "format":" ",
-        "on-click": "bash ~/.config/system_scripts/pkill_bc"
-    }
 }
