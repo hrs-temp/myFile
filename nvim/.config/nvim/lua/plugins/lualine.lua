@@ -2,9 +2,17 @@ return {
   'nvim-lualine/lualine.nvim',
   dependencies = { 'nvim-tree/nvim-web-devicons' },
   config = function()
+    local custom_dracula = require('lualine.themes.dracula')
+    custom_dracula.normal.c.bg = 'NONE'
+    custom_dracula.insert.c.bg = 'NONE'
+    custom_dracula.visual.c.bg = 'NONE'
+    custom_dracula.replace.c.bg = 'NONE'
+    custom_dracula.command.c.bg = 'NONE'
+    custom_dracula.inactive.c.bg = 'NONE'
+
     require('lualine').setup({
       options = {
-        theme = 'horizon',
+        theme = custom_dracula,
       },
       sections = {
         lualine_a = { 'mode' },
@@ -23,7 +31,7 @@ return {
             },
 
             buffers_color = {
-              active = { fg = '#ffffff', bg = '#44475a', gui = 'bold' },
+              active = { fg = '#ffffff', gui = 'bold' },
               inactive = { fg = '#6272a4' },
             },
           }

@@ -147,11 +147,17 @@ alias unarchive="tar -xzf"
 alias finvim='nvim $(fzf -m --preview="bat --color=always {}")'
 alias ytdownload="yt-dlp -f "bestvideo+bestaudio/best" --merge-output-format mkv "
 alias gnome-login="dbus-send --system --type=method_call --dest=org.gnome.DisplayManager --print-reply /org/gnome/DisplayManager/LocalDisplayFactory org.gnome.DisplayManager.LocalDisplayFactory.CreateTransientDisplay"
-
+###
+alias anime-c='ani-cli  --skip --dub -q 1080 -c --rofi'
+alias anime='ani-cli  --skip --dub -q 1080 --rofi'
+alias clear-wallpaper-cache='rm ~/.cache/wallpaper_picker/thumbs/*'
+alias wallpaper-thumbnail='~/.config/quickshell/add_to_quickshell.sh '
+alias live-wallpaper='mpvpaper -o "loop panscan=1.0" '*' '
 
 
 export PATH="~/.gem/ruby/3.4.0/bin:$PATH"
 
+eval "$(zoxide init bash)"
 eval "$(starship init bash)"  
 eval "$(fzf --bash)"
 
@@ -159,9 +165,11 @@ eval "$(fzf --bash)"
 tmux() {
     # Check if we are running Hyprland
     if [[ "$XDG_CURRENT_DESKTOP" == "Hyprland" ]]; then
-        hyprctl dispatch fullscreen 0
+        # Explicitly set to fullscreen without toggling using new Lua syntax
+        hyprctl dispatch "hl.dsp.window.fullscreen_state({ internal = 2, client = 2, action = 'set' })"
         command tmux "$@"
-        hyprctl dispatch fullscreen 0
+        # Explicitly remove fullscreen when tmux exits
+        hyprctl dispatch "hl.dsp.window.fullscreen_state({ internal = 0, client = 0, action = 'set' })"
     else
         command tmux "$@"
     fi
@@ -182,3 +190,14 @@ export EDITOR=nvim
 . "$HOME/.cargo/env"
 
 export MANPAGER="nvim +Man!"
+
+hello(){
+    echo "Hello $logname sir, How're you !!"
+    read resp
+    echo "response : $resp"
+    echo "GoodBye"
+}
+
+
+# Added by Antigravity CLI installer
+export PATH="/home/hrs/.local/bin:$PATH"

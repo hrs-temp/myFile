@@ -16,27 +16,29 @@ configuration{
     sidebar-mode: true;
 }
 
-@theme "catppuccin"
+@theme "frosted-purple"
 
-element-text, element-icon , mode-switcher {
+element-text, element-icon, mode-switcher {
     background-color: inherit;
     text-color:       inherit;
 }
 
 window {
+    transparency: "real";
     height: 360px;
     border: 3px;
+    border-radius: 10px;
     border-color: @border-col;
     background-color: @bg-col;
 }
 
 mainbox {
-    background-color: @bg-col;
+    background-color: transparent;
 }
 
 inputbar {
     children: [prompt,entry];
-    background-color: @bg-col;
+    background-color: transparent;
     border-radius: 6px;
     padding: 2px;
 }
@@ -44,7 +46,7 @@ inputbar {
 prompt {
     background-color: @blue;
     padding: 6px;
-    text-color: @bg-col;
+    text-color: @bg-col-solid;
     border-radius: 3px;
     margin: 20px 0px 0px 20px;
 }
@@ -56,25 +58,25 @@ textbox-prompt-colon {
 
 entry {
     padding: 6px;
-    margin: 20px 0px 0px 10px;
+    margin: 20px 20px 0px 10px;
     text-color: @fg-col;
-    background-color: @bg-col;
+    background-color: transparent;
     placeholder:"Search";
-
 }
 
 listview {
     border: 0px 0px 0px;
     padding: 6px 0px 0px;
-    margin: 10px 0px 0px 20px;
-    columns: 2;
-    background-color: @bg-col;
+    margin: 10px 20px 0px 20px;
+    columns: 1;
+    background-color: transparent;
 }
 
 element {
     padding: 5px;
-    background-color: @bg-col;
-    text-color: @fg-col  ;
+    background-color: transparent;
+    text-color: @fg-col;
+    border-radius: 5px;
 }
 
 element-icon {
@@ -82,23 +84,24 @@ element-icon {
 }
 
 element selected {
-    background-color:  @selected-col ;
-    text-color: @fg-col2  ;
+    background-color: @selected-col;
+    text-color: @fg-col2;
 }
 
 mode-switcher {
     spacing: 0;
-  }
+}
 
 button {
     padding: 10px;
-    background-color: @bg-col-light;
+    background-color: transparent;
     text-color: @grey;
     vertical-align: 0.5; 
     horizontal-align: 0.5;
 }
 
 button selected {
-  background-color: @bg-col;
-  text-color: @blue;
+    background-color: @selected-col;
+    text-color: @fg-col2;
+    border-radius: 5px;
 }

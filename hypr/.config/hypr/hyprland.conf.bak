@@ -39,7 +39,12 @@ exec-once = ~/.config/hypr/wallpaper.sh
 exec-once = blueman-applet
 exec-once = [workspace 5 silent] kitty
 exec-once = [workspace 4 silent] firefox
+exec-once = fcitx5 -d #input-method
 
+# Set environment variables for Wayland apps for input-method;
+env = XMODIFIERS,@im=fcitx
+env = QT_IM_MODULE,fcitx
+env = SDL_IM_MODULE,fcitx
 #############################
 ### ENVIRONMENT VARIABLES ###
 #############################
@@ -265,7 +270,9 @@ bind = $mainMod, 7, workspace, 2
 bind = $mainMod, 8, workspace, 3
 bind = $mainMod, 9, workspace, 4
 bind = $mainMod, 0, workspace, 5
-
+# bind = SUPER, D, exec, hyprctl dispatch workspace empty
+# bind = SUPER, D, workspace, e+1
+bind = $mainMod, D, fullscreen, 0
 # Active Workspace movement
 # bind = SUPER, J, workspace, m-1     # Super + J moves to the workspace on the left
 # bind = SUPER, K, workspace, m+1     # Super + K moves to the workspace on the right
@@ -285,8 +292,8 @@ bind = $mainMod, S, togglespecialworkspace, magic
 bind = $mainMod SHIFT, S, movetoworkspace, special:magic
 
 # Scroll through existing workspaces with mainMod + scroll
-bind = $mainMod, mouse_down, workspace, e+1
-bind = $mainMod, mouse_up, workspace, e-1
+bind = $mainMod, mouse_down, workspace, e-1
+bind = $mainMod, mouse_up, workspace, e+1
 
 # Move/resize windows with mainMod + LMB/RMB and dragging
 bindm = $mainMod, mouse:272, movewindow
@@ -313,6 +320,6 @@ bindl = , XF86AudioPrev, exec, playerctl previous
 # See https://wiki.hypr.land/Configuring/Workspace-Rules/ for workspace rules
 
 # windowrule = match:class ^(kitty)$, opacity 0.8 0.8 0.8
-# windowrule =opacity 0.9 0.9 0.9, match:class ^firefox$, 
+# windowrule =opacity 0.7 0.7 0.7, match:class ^firefox$, 
 windowrule = workspace 5,match:class ^kitty$
 windowrule = workspace 4,match:class ^firefox$

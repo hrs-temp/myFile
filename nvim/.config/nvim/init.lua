@@ -18,6 +18,8 @@ vim.g.loaded_perl_provider = 0
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
+vim.g.lazyvim_check_order = false
+
 vim.opt.number = true
 vim.opt.relativenumber = true
 -- vim.api.nvim_create_autocmd("FileType", {

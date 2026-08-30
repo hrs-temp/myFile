@@ -24,7 +24,10 @@
     "terminal",
     "terminalfont",
     "cpu",
-    "gpu",
+    {
+        "type": "gpu",
+        "format": "Intel Arc Graphics 130V/140V"
+    },
     "memory",
     "swap",
     "disk",
